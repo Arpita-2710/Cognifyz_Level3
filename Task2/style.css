@@ -1,0 +1,91 @@
+/* Reset and base styles */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Oswald:wght@600&family=UnifrakturCook:wght@700&display=swap');
+
+/* Reset and base styles */
+body {
+  margin: 0;
+  font-family: 'Nunito', Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f8fd;
+  color: #333;
+}
+
+header.header {
+  background-color: #04125f;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.intro, .highlights, .qualifications, .cta {
+  padding: 30px 20px;
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.highlights ul,
+.qualifications ul {
+  list-style: none;
+  padding-left: 0;
+}
+.highlights li,
+.qualifications li {
+  padding: 8px 0;
+  position: relative;
+  padding-left: 25px;
+}
+.highlights li::before,
+.qualifications li::before {
+  content: '✔';
+  color: #16045b;
+  position: absolute;
+  left: 0;
+}
+
+.cta {
+  text-align: center;
+}
+.cta-button {
+  background-color: #03035c;
+  color: white;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  font-family: 'Nunito', Arial, sans-serif;
+}
+.cta-button:hover {
+  background-color: #032674;
+}
+
+footer.footer {
+  background-color: hsl(246, 93%, 16%);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  font-family: 'Nunito', Arial, sans-serif;
+}
+footer a {
+  color: #dbeafe;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
