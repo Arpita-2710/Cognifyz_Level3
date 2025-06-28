@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery & Slideshow</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="p-8">
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto bg-white p-8 rounded-2xl shadow-xl space-y-12">
+
+        <!-- Image Gallery Section -->
+        <section class="text-center">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Image Gallery</h1>
+            <p class="text-lg text-gray-600 mb-10">Click on any thumbnail to enlarge the image.</p>
+              <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Gallery Images (placeholders) -->
+                <div class="gallery-item cursor-pointer transform hover:scale-105 transition-transform duration-300 ease-in-out rounded-lg overflow-hidden shadow-md">
+                    <img src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=" alt="Gallery Image 1" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item cursor-pointer transform hover:scale-105 transition-transform duration-300 ease-in-out rounded-lg overflow-hidden shadow-md">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/049/855/347/small_2x/nature-background-high-resolution-wallpaper-for-a-serene-and-stunning-view-photo.jpg" alt="Gallery Image 2" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item cursor-pointer transform hover:scale-105 transition-transform duration-300 ease-in-out rounded-lg overflow-hidden shadow-md">
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2023/7/330479541/GU/EA/XX/6461830/nature-wallpaper.jpg" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item cursor-pointer transform hover:scale-105 transition-transform duration-300 ease-in-out rounded-lg overflow-hidden shadow-md">
+                    <img src="https://img.freepik.com/free-photo/landscape-with-lake-sunset_395237-259.jpg?semt=ais_hybrid&w=740" alt="Gallery Image 4" class="w-full h-48 object-cover rounded-lg">
+                </div>
+            </div>
+          
+        </section>
+
+        <!-- The Modal for enlarged images -->
+        <div id="imageModal" class="modal">
+            <span class="close-button" onclick="document.getElementById('imageModal').style.display = 'none';">&times;</span>
+            <img class="modal-content" id="img01">
+        </div>
+
+        <!-- Image Slideshow Section -->
+        <section class="text-center pt-12">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8">Image Slideshow</h2>
+            <p class="text-lg text-gray-600 mb-10">Automatically transitions between images. Use arrows for manual control.</p>
+
+            <div class="slideshow-container relative mx-auto my-0 bg-white rounded-lg shadow-lg">
+                <!-- Slideshow Images (placeholders) -->
+                <div class="mySlides fade">
+                    <img src="https://images.unsplash.com/photo-1552083375-1447ce886485?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww" alt="Slideshow Image 1" class="w-full h-full object-cover">
+                </div>
+                <div class="mySlides fade">
+                    <img src="https://media.assettype.com/outlooktraveller%2F2024-02%2Feade1225-df37-4b70-8295-0f700fb1d6c4%2Fshutterstock_250402336.jpg?w=480&auto=format%2Ccompress&fit=max" alt="Slideshow Image 2" class="w-full h-full object-cover">
+                </div>
+                <div class="mySlides fade">
+                    <img src="https://img.freepik.com/free-photo/winter-landscape-snow-covered-forest-tranquil-scene-frozen-beauty-nature-generated-by-ai_188544-250510.jpg?semt=ais_hybrid&w=740" alt="Slideshow Image 3" class="w-full h-full object-cover">
+                </div>
+                <div class="mySlides fade">
+                    <img src="https://wallpapers.com/images/featured/beautiful-nature-pictures-qjcss5r32ziry34t.jpg" alt="Slideshow Image 4" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Previous button only (now positioned to the left) -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // --- Image Gallery Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('img01');
+            const galleryItems = document.querySelectorAll('.gallery-item img');
+            const closeButton = document.querySelector('.close-button');
+
+            // Add click listener to each gallery thumbnail
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    modal.style.display = 'flex'; // Use flex to center the content
+                    modalImg.src = item.src; // Set the source of the enlarged image
+                    modalImg.alt = item.alt; // Set alt text
+                });
+            });
+
+            // Close the modal when the close button is clicked
+            closeButton.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            // Close the modal when clicking outside the image
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // --- Image Slideshow Logic ---
+        let slideIndex = 0;
+        let slideshowInterval;
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
+            slides[slideIndex - 1].style.display = "block";
+
+            // Clear any existing interval to prevent multiple intervals running
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+            }
+            // Set a new interval for the next automatic transition (every 3 seconds)
+            slideshowInterval = setTimeout(showSlides, 3000);
+        }
+
+        function plusSlides(n) {
+            // Stop the automatic slideshow when manual navigation is used
+            clearTimeout(slideshowInterval);
+            slideIndex += n;
+            let slides = document.getElementsByClassName("mySlides");
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
+            if (slideIndex < 1) {
+                slideIndex = slides.length
+            }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+            // Restart the automatic slideshow after manual navigation
+            slideshowInterval = setTimeout(showSlides, 3000);
+        }
+
+        // Start the slideshow when the window loads
+        window.onload = function() {
+            showSlides();
+        };
+    </script>
+</body>
+</html>
